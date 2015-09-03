@@ -1,0 +1,4 @@
+name: AnvilCraft-Account
+main: com.alcist.anvilcraft.account.Plugin
+version: 1
+depend: [FireHelper]
