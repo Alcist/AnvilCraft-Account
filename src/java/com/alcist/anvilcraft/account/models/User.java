@@ -1,5 +1,10 @@
 package com.alcist.anvilcraft.account.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import org.bukkit.Bukkit;
+import org.bukkit.Location;
+import org.bukkit.World;
+
 import java.util.Date;
 
 /**
@@ -20,6 +25,8 @@ public class User {
             public int x;
             public int y;
             public int z;
+            public float yaw;
+            public float pitch;
 
             public Location(){}
 
@@ -27,7 +34,15 @@ public class User {
                 x = location.getBlockX();
                 y = location.getBlockY();
                 z = location.getBlockZ();
+                yaw = location.getYaw();
+                pitch = location.getPitch();
                 world = location.getWorld().getName();
+            }
+
+            @JsonIgnore
+            public org.bukkit.Location getBukkitLocation() {
+                World bukkitWorld = Bukkit.getWorld(world);
+                return new org.bukkit.Location(bukkitWorld, x, y, z, yaw, pitch);
             }
         }
     }

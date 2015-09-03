@@ -1,4 +1,5 @@
 package com.alcist.anvilcraft.account.api;
+import com.alcist.anvilcraft.account.models.User;
 import org.bukkit.entity.Player;
 
 /**
@@ -8,8 +9,8 @@ public interface AccountEventHandler {
 
     /**
      * Add a listener on the current avatar the player is using.
-     * @param player the player.
      */
-    void addAvatarListener(Player player);
-    void removeAvatarListener(Player player);
+    void addAvatarListener(String userUUID, Callback<User.Avatar> callback);
+    void removeAvatarListener(String userUUID);
+    void removeAllListeners();
 }

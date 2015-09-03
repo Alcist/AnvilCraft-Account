@@ -7,7 +7,7 @@ import java.util.HashMap;
 /**
  * Created by istar on 04/08/14.
  */
-public interface AccountDataHelper {
+public interface IAccountData {
 
     /**
      * Returns the user info from Firebase or the memory if it's already loaded.
