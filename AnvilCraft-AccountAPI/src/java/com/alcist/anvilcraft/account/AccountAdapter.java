@@ -1,7 +1,7 @@
-package com.alcist.anvilcraft.account.api;
+package com.alcist.anvilcraft.account;
 
-import com.alcist.anvilcraft.account.api.models.Avatar;
-import com.alcist.anvilcraft.account.api.models.User;
+import com.alcist.anvilcraft.account.models.Avatar;
+import com.alcist.anvilcraft.account.models.User;
 import com.alcist.firehelper.Callback;
 
 import java.util.HashMap;

@@ -1,4 +1,4 @@
-package com.alcist.anvilcraft.account.api.models;
+package com.alcist.anvilcraft.account.models;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.bukkit.Bukkit;

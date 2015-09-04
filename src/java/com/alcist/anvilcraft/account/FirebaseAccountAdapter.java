@@ -4,11 +4,10 @@ package com.alcist.anvilcraft.account;
  * Created by istar on 03/09/15.
  */
 
-import com.alcist.anvilcraft.account.api.AccountAdapter;
-import com.alcist.anvilcraft.account.api.models.Avatar;
+import com.alcist.anvilcraft.account.models.Avatar;
 import com.alcist.firehelper.Callback;
 import com.alcist.firehelper.BukkitFireListener;
-import com.alcist.anvilcraft.account.api.models.User;
+import com.alcist.anvilcraft.account.models.User;
 import com.firebase.client.*;
 
 import java.util.HashMap;

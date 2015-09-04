@@ -1,4 +1,4 @@
-package com.alcist.anvilcraft.account.api.models;
+package com.alcist.anvilcraft.account.models;
 
 /**
  * Created by istar on 04/09/15.
@@ -6,5 +6,4 @@ package com.alcist.anvilcraft.account.api.models;
 public class Avatar {
     public String name;
     public Location location;
-
 }

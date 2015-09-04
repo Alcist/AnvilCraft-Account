@@ -1,5 +1,5 @@
-package com.alcist.anvilcraft.account.api;
-import com.alcist.anvilcraft.account.api.models.Avatar;
+package com.alcist.anvilcraft.account;
+import com.alcist.anvilcraft.account.models.Avatar;
 import com.alcist.firehelper.Callback;
 
 /**

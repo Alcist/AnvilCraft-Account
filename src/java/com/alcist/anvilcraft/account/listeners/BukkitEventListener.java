@@ -1,11 +1,10 @@
 package com.alcist.anvilcraft.account.listeners;
 
 import com.alcist.anvilcraft.account.Plugin;
-import com.alcist.anvilcraft.account.api.AccountAdapter;
-import com.alcist.anvilcraft.account.api.models.Avatar;
-import com.alcist.anvilcraft.account.api.models.Location;
-import com.alcist.anvilcraft.account.api.models.User;
-import com.alcist.anvilcraft.account.api.AccountEventHandler;
+import com.alcist.anvilcraft.account.AccountAdapter;
+import com.alcist.anvilcraft.account.models.Avatar;
+import com.alcist.anvilcraft.account.models.Location;
+import com.alcist.anvilcraft.account.models.User;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
@@ -23,13 +22,13 @@ public class BukkitEventListener implements Listener {
 
 
     AccountAdapter dataHelper;
-    AccountEventHandler eventHandler;
+    FirebaseEventListener eventHandler;
     Plugin plugin;
 
-    public BukkitEventListener() {
+    public BukkitEventListener(FirebaseEventListener eventHandler) {
         plugin = Plugin.getPlugin(Plugin.class);
         dataHelper = plugin.getAccountData();
-        eventHandler = plugin.getEventHandler();
+        this.eventHandler = eventHandler;
     }
 
     @EventHandler(priority = EventPriority.MONITOR, ignoreCancelled = false)

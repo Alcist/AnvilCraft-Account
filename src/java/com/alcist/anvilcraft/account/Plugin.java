@@ -1,7 +1,5 @@
 package com.alcist.anvilcraft.account;
 
-import com.alcist.anvilcraft.account.api.AccountAdapter;
-import com.alcist.anvilcraft.account.api.AnvilCraftAccount;
 import com.alcist.anvilcraft.account.listeners.FirebaseEventListener;
 import com.firebase.client.*;
 import com.alcist.anvilcraft.account.listeners.BukkitEventListener;
@@ -28,7 +26,7 @@ public class Plugin extends JavaPlugin implements AnvilCraftAccount {
         Firebase firebase = ((FireHelper)Bukkit.getPluginManager().getPlugin("FireHelper")).getFirebase();
         fireHelper = new FirebaseAccountAdapter(firebase);
         eventHandler = new FirebaseEventListener(firebase, fireHelper);
-        userListener = new BukkitEventListener();
+        userListener = new BukkitEventListener(eventHandler);
         getServer().getPluginManager().registerEvents(userListener, this);
         setConfig();
     }
@@ -47,10 +45,4 @@ public class Plugin extends JavaPlugin implements AnvilCraftAccount {
     public AccountAdapter getAccountData() {
         return fireHelper;
     }
-
-    @Override
-    public FirebaseEventListener getEventHandler() {
-        return eventHandler;
-    }
-
 }

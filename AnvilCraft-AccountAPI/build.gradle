@@ -15,14 +15,6 @@ repositories {
     }
 }
 
-jar {
-    from { // use of closure defers evaluation until execution time
-        configurations.bundle.collect {
-            zipTree(it)
-        }
-    }
-}
-
 sourceSets {
     main {
         java {
@@ -32,23 +24,16 @@ sourceSets {
             srcDir 'src/resources'
         }
     }
-}
-
-configurations {
-    bundle
-}
-
-task copyPlugin(type: Copy, dependsOn: jar) {
-    from 'build/libs'
-    include '**/*.jar'
-    into pluginsFolder
+    test {
+        java {
+            srcDir 'src/test'
+        }
+    }
 }
 
 dependencies {
     compile 'org.spigotmc:spigot-api:+'
     compile project(':FireHelper/FireHelperAPI')
-    bundle project(':AnvilCraft-AccountAPI')
-    compile configurations.bundle
     testCompile 'junit:junit:4.11'
     testCompile 'org.powermock:powermock-module-junit4:1.4.9'
     testCompile 'org.powermock:powermock-api-mockito:1.4.9'

@@ -1,9 +1,8 @@
 package com.alcist.anvilcraft.account.listeners;
 
 import com.alcist.anvilcraft.account.Plugin;
-import com.alcist.anvilcraft.account.api.AccountAdapter;
-import com.alcist.anvilcraft.account.api.AccountEventHandler;
-import com.alcist.anvilcraft.account.api.models.Avatar;
+import com.alcist.anvilcraft.account.AccountAdapter;
+import com.alcist.anvilcraft.account.models.Avatar;
 import com.alcist.firehelper.Callback;
 import com.alcist.firehelper.BukkitFireListener;
 import com.firebase.client.Firebase;
@@ -13,7 +12,7 @@ import java.util.HashMap;
 /**
  * Created by istar on 03/09/15.
  */
-public class FirebaseEventListener implements AccountEventHandler {
+public class FirebaseEventListener {
 
     // Reference to Account Fire Helper
     final AccountAdapter account;
@@ -32,7 +31,6 @@ public class FirebaseEventListener implements AccountEventHandler {
         this.fireListener = new BukkitFireListener<>(Plugin.class);
     }
 
-    @Override
     public void addAvatarListener(String userUUID, Callback<Avatar> callback) {
         account.getUser(userUUID, user -> {
             if (user != null) {
@@ -47,7 +45,6 @@ public class FirebaseEventListener implements AccountEventHandler {
         });
     }
 
-    @Override
     public void removeAvatarListener(String userUUID) {
         BukkitFireListener.Listener listener = avatarFireMap.get(userUUID);
         if(listener != null) {
@@ -58,7 +55,6 @@ public class FirebaseEventListener implements AccountEventHandler {
         }
     }
 
-    @Override
     public void removeAllListeners() {
         avatarFireMap.forEach((userUUID, avatarFireListener) -> {
             account.getUser(userUUID, user -> {
