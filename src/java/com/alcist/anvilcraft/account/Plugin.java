@@ -1,9 +1,10 @@
 package com.alcist.anvilcraft.account;
 
-import com.alcist.anvilcraft.account.api.IAccountData;
+import com.alcist.anvilcraft.account.api.AccountAdapter;
 import com.alcist.anvilcraft.account.api.AnvilCraftAccount;
+import com.alcist.anvilcraft.account.listeners.FirebaseEventListener;
 import com.firebase.client.*;
-import com.alcist.anvilcraft.account.listeners.bukkit.UserEventListener;
+import com.alcist.anvilcraft.account.listeners.BukkitEventListener;
 import com.alcist.firehelper.FireHelper;
 import org.bukkit.Bukkit;
 import org.bukkit.plugin.java.JavaPlugin;
@@ -14,36 +15,41 @@ import org.bukkit.plugin.java.JavaPlugin;
 public class Plugin extends JavaPlugin implements AnvilCraftAccount {
 
     //Bukkit Listeners
-    private UserEventListener userListener;
+    private BukkitEventListener userListener;
 
-    private AccountFireHelper fireHelper;
+    private FirebaseAccountAdapter fireHelper;
 
-    private FireEventHandler eventHandler;
+    private FirebaseEventListener eventHandler;
 
 
     @Override
     public void onEnable() {
         super.onEnable();
         Firebase firebase = ((FireHelper)Bukkit.getPluginManager().getPlugin("FireHelper")).getFirebase();
-        fireHelper = new AccountFireHelper(firebase);
-        eventHandler = new FireEventHandler(firebase);
-        userListener = new UserEventListener();
+        fireHelper = new FirebaseAccountAdapter(firebase);
+        eventHandler = new FirebaseEventListener(firebase, fireHelper);
+        userListener = new BukkitEventListener();
         getServer().getPluginManager().registerEvents(userListener, this);
+        setConfig();
     }
 
     @Override
     public void onDisable() {
         super.onDisable();
-        fireHelper = null;
+        eventHandler.removeAllListeners();
+    }
+
+    public void setConfig() {
+        saveResource("config.yml", false);
     }
 
     @Override
-    public IAccountData getAccountData() {
+    public AccountAdapter getAccountData() {
         return fireHelper;
     }
 
     @Override
-    public FireEventHandler getEventHandler() {
+    public FirebaseEventListener getEventHandler() {
         return eventHandler;
     }
 

@@ -1,6 +1,6 @@
 package com.alcist.anvilcraft.account;
 
-import com.alcist.anvilcraft.account.models.User;
+import com.alcist.anvilcraft.account.api.models.User;
 import com.firebase.client.Firebase;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -20,7 +20,7 @@ public class TestAccountFireHelper {
     public void testSaveUser() {
 
         Firebase f = new Firebase("https://anvilcraft.firebaseio.com");
-        AccountFireHelper fh = spy(new AccountFireHelper(f));
+        FirebaseAccountAdapter fh = spy(new FirebaseAccountAdapter(f));
 
         User tUser = new User();
         String key = fh.usersRef.push().getKey();

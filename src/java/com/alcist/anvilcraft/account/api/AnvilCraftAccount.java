@@ -5,5 +5,5 @@ package com.alcist.anvilcraft.account.api;
  */
 public interface AnvilCraftAccount {
     AccountEventHandler getEventHandler();
-    IAccountData getAccountData();
+    AccountAdapter getAccountData();
 }

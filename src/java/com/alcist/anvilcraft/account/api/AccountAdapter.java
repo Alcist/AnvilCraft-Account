@@ -1,6 +1,7 @@
 package com.alcist.anvilcraft.account.api;
 
-import com.alcist.anvilcraft.account.models.User;
+import com.alcist.anvilcraft.account.api.models.Avatar;
+import com.alcist.anvilcraft.account.api.models.User;
 import com.alcist.firehelper.Callback;
 
 import java.util.HashMap;
@@ -8,7 +9,7 @@ import java.util.HashMap;
 /**
  * Created by istar on 04/08/14.
  */
-public interface IAccountData {
+public interface AccountAdapter {
 
     /**
      * Returns the user info from Firebase or the memory if it's already loaded.
@@ -30,7 +31,7 @@ public interface IAccountData {
      * @param avatarId  The avatar unique identifier
      * @param callback
      */
-    void getAvatar(String playerUUID, String avatarId, Callback<User.Avatar> callback);
+    void getAvatar(String playerUUID, String avatarId, Callback<Avatar> callback);
 
     /**
      * Saves the reference the user has to the player given on Firebase.
@@ -45,7 +46,7 @@ public interface IAccountData {
      * @param avatar The avatar.
      * @return the unique identifier Firebase has created for that avatar.
      */
-    String saveAvatar(String playerUUID, User.Avatar avatar);
+    String saveAvatar(String playerUUID, Avatar avatar);
 
     /**
      * Saves the given avatar on Firebase and persist it in memory.
@@ -53,7 +54,7 @@ public interface IAccountData {
      * @param avatarId The avatar unique identifier
      * @param avatar The avatar
      */
-    void saveAvatar(String playerUUID, String avatarId, User.Avatar avatar);
+    void saveAvatar(String playerUUID, String avatarId, Avatar avatar);
 
     /**
      * Free the memory that the player given is using.
