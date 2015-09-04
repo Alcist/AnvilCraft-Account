@@ -14,7 +14,6 @@ public class User {
     public String minecraftName;
     public Date lastLogin;
     public String currentAvatar;
-    public String email;
 
     public static class Avatar {
         public String name;

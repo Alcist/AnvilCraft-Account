@@ -24,6 +24,11 @@ sourceSets {
             srcDir 'src/resources'
         }
     }
+    test {
+        java {
+            srcDir 'src/test'
+        }
+    }
 }
 
 task copyPlugin(type: Copy, dependsOn: jar) {
@@ -35,5 +40,7 @@ task copyPlugin(type: Copy, dependsOn: jar) {
 dependencies {
     compile 'org.spigotmc:spigot-api:+'
     compile project(':FireHelper/FireHelperAPI')
-    testCompile group: 'junit', name: 'junit', version: '4.11'
+    testCompile 'junit:junit:4.11'
+    testCompile 'org.powermock:powermock-module-junit4:1.4.9'
+    testCompile 'org.powermock:powermock-api-mockito:1.4.9'
 }

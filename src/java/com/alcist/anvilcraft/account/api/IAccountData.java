@@ -1,6 +1,7 @@
 package com.alcist.anvilcraft.account.api;
 
 import com.alcist.anvilcraft.account.models.User;
+import com.alcist.firehelper.Callback;
 
 import java.util.HashMap;
 
@@ -21,7 +22,7 @@ public interface IAccountData {
      * @param playerUUID
      * @param callback
      */
-    void getAvatars(String playerUUID, Callback<HashMap<String, User.Avatar>> callback);
+    void getAvatars(String playerUUID, Callback<HashMap> callback);
 
     /**
      * Return the given avatar from Firebase or the memory if it's already loaded.

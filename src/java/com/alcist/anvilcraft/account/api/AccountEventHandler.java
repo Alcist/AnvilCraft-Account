@@ -1,6 +1,6 @@
 package com.alcist.anvilcraft.account.api;
 import com.alcist.anvilcraft.account.models.User;
-import org.bukkit.entity.Player;
+import com.alcist.firehelper.Callback;
 
 /**
  * Created by istar on 04/08/14.
