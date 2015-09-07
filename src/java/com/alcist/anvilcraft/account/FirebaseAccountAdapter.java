@@ -3,16 +3,13 @@ package com.alcist.anvilcraft.account;
 /**
  * Created by istar on 03/09/15.
  */
-
 import com.alcist.anvilcraft.account.models.Avatar;
 import com.alcist.firehelper.Callback;
 import com.alcist.firehelper.BukkitFireListener;
 import com.alcist.anvilcraft.account.models.User;
-import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.type.MapType;
 import com.firebase.client.*;
 
-import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by istar on 04/08/14.
@@ -31,6 +28,7 @@ class FirebaseAccountAdapter implements AccountAdapter {
         this.firebase = firebase;
         this.usersRef =  firebase.child("/users");
         this.avatarsRef = firebase.child("/avatars");
+        this.usersRef.keepSynced(true);
         this.bukkitFireListener = new BukkitFireListener<>(Plugin.class);
     }
 
@@ -47,17 +45,10 @@ class FirebaseAccountAdapter implements AccountAdapter {
     }
 
     @Override
-    public void getAvatars(final String playerId, final Callback<HashMap<String, Avatar>> callback) {
-        MapType mapType = new ObjectMapper().getTypeFactory().constructMapType(HashMap.class, String.class, Avatar.class);
-        Query query = avatarsRef.child(playerId);
-        query.addListenerForSingleValueEvent(bukkitFireListener.listen((Class<HashMap<String, Avatar>>)mapType.getRawClass(), callback));
-
-    }
-
-    @Override
-    public void getAvatar(String playerUUID, String avatarId, final Callback<Avatar> callback) {
-        Query query = avatarsRef.child(playerUUID).child(avatarId);
-        query.addListenerForSingleValueEvent(bukkitFireListener.listen(Avatar.class, callback));
+    public void getUserByName(String minecraftName, Callback<UserResponse> callback) {
+        usersRef.orderByChild("minecraftName")
+                .equalTo(minecraftName)
+                .addListenerForSingleValueEvent(bukkitFireListener.listen(UserResponse.class, callback));
     }
 
     @Override
@@ -66,19 +57,27 @@ class FirebaseAccountAdapter implements AccountAdapter {
     }
 
     @Override
-    public String saveAvatar(String playerUUID, Avatar avatar) {
-        Firebase avatarRef = avatarsRef.child(playerUUID).push();
-        saveAvatar(playerUUID, avatarRef.getKey(), avatar);
+    public void getAvatar(String avatarUUID, Callback<Avatar> callback) {
+        avatarsRef.child(avatarUUID)
+                .addListenerForSingleValueEvent(bukkitFireListener.listen(Avatar.class, callback));
+    }
+
+    @Override
+    public void getAvatarByName(String avatarName, Callback<AvatarResponse> callback) {
+        avatarsRef.orderByChild("name")
+                .equalTo(avatarName).getRef()
+                .addListenerForSingleValueEvent(bukkitFireListener.listen(AvatarResponse.class, callback));
+    }
+
+    @Override
+    public void saveAvatar(String avatarUUID, Avatar avatar) {
+        avatarsRef.child(avatarUUID).setValue(avatar);
+    }
+
+    @Override
+    public String saveAvatar(Avatar avatar) {
+        Firebase avatarRef = avatarsRef.push();
+        avatarRef.setValue(avatar);
         return avatarRef.getKey();
-    }
-
-    @Override
-    public void saveAvatar(String playerUUID, String avatarId, Avatar avatar) {
-        avatarsRef.child(playerUUID).child(avatarId).setValue(avatar);
-    }
-
-    @Override
-    public void clearData(String playerUUID) {
-
     }
 }

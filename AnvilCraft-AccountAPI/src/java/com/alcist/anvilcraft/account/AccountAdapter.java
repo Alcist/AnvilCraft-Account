@@ -5,6 +5,7 @@ import com.alcist.anvilcraft.account.models.User;
 import com.alcist.firehelper.Callback;
 
 import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by istar on 04/08/14.
@@ -18,20 +19,7 @@ public interface AccountAdapter {
      */
     void getUser(String playerUUID, Callback<User> callback);
 
-    /**
-     * Returns the avatars for the given user from Firebase or the memory if it's already loaded..
-     * @param playerUUID
-     * @param callback
-     */
-    void getAvatars(String playerUUID, Callback<HashMap<String, Avatar>> callback);
-
-    /**
-     * Return the given avatar from Firebase or the memory if it's already loaded.
-     * @param playerUUID The player unique identifier
-     * @param avatarId  The avatar unique identifier
-     * @param callback
-     */
-    void getAvatar(String playerUUID, String avatarId, Callback<Avatar> callback);
+    void getUserByName(String minecraftName, Callback<UserResponse> callback);
 
     /**
      * Saves the reference the user has to the player given on Firebase.
@@ -40,25 +28,15 @@ public interface AccountAdapter {
      */
     void saveUser(String playerUUID, User user);
 
-    /**
-     * Saves the given avatar on Firebase and persist it in memory.
-     * @param playerUUID The player unique identifier
-     * @param avatar The avatar.
-     * @return the unique identifier Firebase has created for that avatar.
-     */
-    String saveAvatar(String playerUUID, Avatar avatar);
+    void getAvatar(String avatarUUID, Callback<Avatar> callback);
 
-    /**
-     * Saves the given avatar on Firebase and persist it in memory.
-     * @param playerUUID The player unique identifier
-     * @param avatarId The avatar unique identifier
-     * @param avatar The avatar
-     */
-    void saveAvatar(String playerUUID, String avatarId, Avatar avatar);
+    void getAvatarByName(String avatarName, Callback<AvatarResponse> callback);
 
-    /**
-     * Free the memory that the player given is using.
-     * @param playerUUID The player unique identifier
-     */
-    void clearData(String playerUUID);
+    void saveAvatar(String avatarUUID, Avatar avatar);
+
+    String saveAvatar(Avatar avatar);
+
+    class MapResponse<T> extends HashMap<String, T> {}
+    class UserResponse extends MapResponse<User>{}
+    class AvatarResponse extends MapResponse<Avatar>{}
 }

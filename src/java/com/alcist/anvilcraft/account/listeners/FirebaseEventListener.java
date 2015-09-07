@@ -36,11 +36,11 @@ public class FirebaseEventListener {
             if (user != null) {
                 BukkitFireListener.Listener oldListener = avatarFireMap.get(userUUID);
                 if (oldListener != null) {
-                    avatarsRef.child(userUUID).child(user.currentAvatar).removeEventListener(oldListener);
+                    avatarsRef.child(user.currentAvatar).removeEventListener(oldListener);
                 }
                 BukkitFireListener.Listener<Avatar> listener = fireListener.listen(Avatar.class, callback);
                 avatarFireMap.put(userUUID, listener);
-                avatarsRef.child(userUUID).child(user.currentAvatar).addValueEventListener(listener);
+                avatarsRef.child(user.currentAvatar).addValueEventListener(listener);
             }
         });
     }
@@ -49,7 +49,7 @@ public class FirebaseEventListener {
         BukkitFireListener.Listener listener = avatarFireMap.get(userUUID);
         if(listener != null) {
             account.getUser(userUUID, user -> {
-                avatarsRef.child(userUUID).child(user.currentAvatar).removeEventListener(listener);
+                avatarsRef.child(user.currentAvatar).removeEventListener(listener);
                 avatarFireMap.remove(userUUID);
             });
         }

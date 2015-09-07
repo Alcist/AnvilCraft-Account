@@ -5,17 +5,15 @@ import com.alcist.anvilcraft.account.AccountAdapter;
 import com.alcist.anvilcraft.account.models.Avatar;
 import com.alcist.anvilcraft.account.models.Location;
 import com.alcist.anvilcraft.account.models.User;
-import com.google.common.collect.Lists;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
-import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 import org.bukkit.event.player.PlayerLoginEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 
 import java.util.Date;
-import java.util.Locale;
+import java.util.HashMap;
 
 /**
  * Created by istar on 03/08/14.
@@ -46,10 +44,16 @@ public class BukkitEventListener implements Listener {
                 user.minecraftName = player.getName();
             }
             if (user.currentAvatar == null) {
-                //TODO Customize creation of avatar.
+                //TODO Check if the user has avatars and let it choose one.
+                //TODO first time uses logs in create avatar.
                 Avatar avatar = new Avatar();
                 avatar.name = player.getDisplayName();
-                user.currentAvatar = dataHelper.saveAvatar(playerUUID, avatar);
+                user.currentAvatar = dataHelper.saveAvatar(avatar);
+                if(user.avatars == null) {
+                    user.avatars = new HashMap<>();
+                }
+                user.avatars.put(user.currentAvatar,true);
+                dataHelper.saveUser(playerUUID, user);
             }
             eventHandler.addAvatarListener(playerUUID, avatar -> {
                 if (avatar.name != null) {
@@ -71,16 +75,15 @@ public class BukkitEventListener implements Listener {
         final Player player = event.getPlayer();
         final String playerUUID = player.getUniqueId().toString();
         dataHelper.getUser(playerUUID, user ->
-                dataHelper.getAvatar(playerUUID, user.currentAvatar, avatar -> {
+                dataHelper.getAvatar(user.currentAvatar, avatar -> {
                     if(plugin.getConfig().getBoolean("location.logOnExit")) {
                         avatar.location = new Location(player.getLocation());
                     }
-                    dataHelper.saveAvatar(playerUUID, user.currentAvatar, avatar);
+                    dataHelper.saveAvatar(user.currentAvatar, avatar);
                 })
         );
 
         eventHandler.removeAvatarListener(playerUUID);
-        dataHelper.clearData(playerUUID);
     }
 
 }
