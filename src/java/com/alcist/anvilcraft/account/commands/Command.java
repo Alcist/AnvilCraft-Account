@@ -10,8 +10,7 @@ public abstract class Command {
     public final CommandInfo info;
 
     public Command() {
-        this.info = getChildClass().getAnnotation(CommandInfo.class);
+        this.info = getClass().getAnnotation(CommandInfo.class);
     }
 
-    public abstract Class<? extends Command> getChildClass();
 }

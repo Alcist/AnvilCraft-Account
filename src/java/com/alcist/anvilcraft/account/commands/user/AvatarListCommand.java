@@ -68,8 +68,4 @@ public class AvatarListCommand extends SubCommand {
                         .desc("shows the avatars for the given user").build());
     }
 
-    @Override
-    public Class<? extends Command> getChildClass() {
-        return getClass();
-    }
 }

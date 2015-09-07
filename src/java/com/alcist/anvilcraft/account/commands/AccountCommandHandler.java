@@ -29,9 +29,4 @@ public class AccountCommandHandler extends CommandHandler {
         return new Class[]{AvatarListCommand.class};
     }
 
-
-    @Override
-    public Class<? extends Command> getChildClass() {
-        return getClass();
-    }
 }

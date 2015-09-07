@@ -12,11 +12,9 @@ public abstract class CommandHandler extends Command implements CommandExecutor 
 
     private final Map<Option, SubCommand> commands;
     private final Options options;
-    private final CommandInfo info;
     private final Permissions permissions;
 
     public CommandHandler(Plugin plugin) {
-        info = getClass().getAnnotation(CommandInfo.class);
         this.permissions = new Permissions();
         this.options = new Options();
         this.commands = new HashMap<>();
@@ -143,9 +141,5 @@ public abstract class CommandHandler extends Command implements CommandExecutor 
             return new Options();
         }
 
-        @Override
-        public Class<? extends Command> getChildClass() {
-            return getClass();
-        }
     }
 }
