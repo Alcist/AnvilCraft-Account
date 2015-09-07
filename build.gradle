@@ -32,7 +32,13 @@ sourceSets {
             srcDir 'src/resources'
         }
     }
+    test {
+        java {
+            srcDir 'src/test'
+        }
+    }
 }
+
 
 configurations {
     bundle
@@ -48,6 +54,7 @@ dependencies {
     compile 'org.spigotmc:spigot-api:+'
     compile project(':FireHelper/FireHelperAPI')
     bundle project(':AnvilCraft-AccountAPI')
+    bundle 'commons-cli:commons-cli:1.3.1'
     compile configurations.bundle
     testCompile 'junit:junit:4.11'
     testCompile 'org.powermock:powermock-module-junit4:1.4.9'

@@ -8,6 +8,8 @@ import com.alcist.anvilcraft.account.models.Avatar;
 import com.alcist.firehelper.Callback;
 import com.alcist.firehelper.BukkitFireListener;
 import com.alcist.anvilcraft.account.models.User;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.type.MapType;
 import com.firebase.client.*;
 
 import java.util.HashMap;
@@ -45,9 +47,11 @@ class FirebaseAccountAdapter implements AccountAdapter {
     }
 
     @Override
-    public void getAvatars(final String playerId, final Callback<HashMap> callback) {
-        Query query = usersRef.child(playerId);
-        query.addListenerForSingleValueEvent(bukkitFireListener.listen(HashMap.class, callback));
+    public void getAvatars(final String playerId, final Callback<HashMap<String, Avatar>> callback) {
+        MapType mapType = new ObjectMapper().getTypeFactory().constructMapType(HashMap.class, String.class, Avatar.class);
+        Query query = avatarsRef.child(playerId);
+        query.addListenerForSingleValueEvent(bukkitFireListener.listen((Class<HashMap<String, Avatar>>)mapType.getRawClass(), callback));
+
     }
 
     @Override

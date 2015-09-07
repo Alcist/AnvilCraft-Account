@@ -2,3 +2,9 @@ name: AnvilCraft-Account
 main: com.alcist.anvilcraft.account.Plugin
 version: 1
 depend: [FireHelper]
+
+commands:
+  account:
+    description: Base command for AnvilCraft Account
+  ac:
+    description: Base command for AnvilCraft Account

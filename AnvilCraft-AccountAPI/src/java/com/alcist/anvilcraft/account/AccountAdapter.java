@@ -23,7 +23,7 @@ public interface AccountAdapter {
      * @param playerUUID
      * @param callback
      */
-    void getAvatars(String playerUUID, Callback<HashMap> callback);
+    void getAvatars(String playerUUID, Callback<HashMap<String, Avatar>> callback);
 
     /**
      * Return the given avatar from Firebase or the memory if it's already loaded.

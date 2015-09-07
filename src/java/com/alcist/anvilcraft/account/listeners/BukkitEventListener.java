@@ -5,14 +5,17 @@ import com.alcist.anvilcraft.account.AccountAdapter;
 import com.alcist.anvilcraft.account.models.Avatar;
 import com.alcist.anvilcraft.account.models.Location;
 import com.alcist.anvilcraft.account.models.User;
+import com.google.common.collect.Lists;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
+import org.bukkit.event.player.PlayerCommandPreprocessEvent;
 import org.bukkit.event.player.PlayerLoginEvent;
 import org.bukkit.event.player.PlayerQuitEvent;
 
 import java.util.Date;
+import java.util.Locale;
 
 /**
  * Created by istar on 03/08/14.
@@ -79,6 +82,5 @@ public class BukkitEventListener implements Listener {
         eventHandler.removeAvatarListener(playerUUID);
         dataHelper.clearData(playerUUID);
     }
-
 
 }
