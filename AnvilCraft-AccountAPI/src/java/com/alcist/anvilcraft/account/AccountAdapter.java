@@ -38,5 +38,7 @@ public interface AccountAdapter {
 
     class MapResponse<T> extends HashMap<String, T> {}
     class UserResponse extends MapResponse<User>{}
-    class AvatarResponse extends MapResponse<Avatar>{}
+    class AvatarResponse extends MapResponse<Avatar>{
+
+    }
 }

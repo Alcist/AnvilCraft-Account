@@ -32,6 +32,10 @@ public class BukkitHelpFormatter {
             stringBuilder.append(" ");
             stringBuilder.append(option.getDescription());
 
+            if (option.isRequired()) {
+                stringBuilder.append(" (required)");
+            }
+
             sender.sendMessage(stringBuilder.toString());
         });
     }

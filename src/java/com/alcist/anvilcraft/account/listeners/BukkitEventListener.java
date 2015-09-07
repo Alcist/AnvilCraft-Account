@@ -52,17 +52,20 @@ public class BukkitEventListener implements Listener {
                 if(user.avatars == null) {
                     user.avatars = new HashMap<>();
                 }
-                user.avatars.put(user.currentAvatar,true);
+                user.avatars.put(user.currentAvatar, true);
                 dataHelper.saveUser(playerUUID, user);
             }
-            eventHandler.addAvatarListener(playerUUID, avatar -> {
-                if (avatar.name != null) {
-                    player.setDisplayName(avatar.name);
-                    player.setPlayerListName(avatar.name);
-                }
-                if (avatar.location != null && plugin.getConfig().getBoolean("location.tpOnEnter")) {
-                    player.teleport(avatar.location.getBukkitLocation());
-                }
+            eventHandler.addUserListener(playerUUID, nUser -> {
+
+                eventHandler.addAvatarListener(playerUUID, avatar -> {
+                    if (avatar.name != null) {
+                        player.setDisplayName(avatar.name);
+                        player.setPlayerListName(avatar.name);
+                    }
+                    if (avatar.location != null && plugin.getConfig().getBoolean("location.tpOnEnter")) {
+                        player.teleport(avatar.location.getBukkitLocation());
+                    }
+                });
             });
 
             user.lastLogin = new Date();

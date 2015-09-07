@@ -65,7 +65,7 @@ class FirebaseAccountAdapter implements AccountAdapter {
     @Override
     public void getAvatarByName(String avatarName, Callback<AvatarResponse> callback) {
         avatarsRef.orderByChild("name")
-                .equalTo(avatarName).getRef()
+                .equalTo(avatarName)
                 .addListenerForSingleValueEvent(bukkitFireListener.listen(AvatarResponse.class, callback));
     }
 

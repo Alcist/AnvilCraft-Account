@@ -25,7 +25,7 @@ import java.util.HashMap;
         desc = "creates a new avatar",
         permission = "account.avatar.create")
 public class AvatarCreateCommand extends SubCommand {
-
+    //TODO Define max avatars per user
     Plugin plugin;
 
     public AvatarCreateCommand() {
