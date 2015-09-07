@@ -37,9 +37,9 @@ public abstract class CommandHandler extends Command implements CommandExecutor 
         if(this.options.hasOption(base)) {
             Option option = this.options.getOption(base);
             SubCommand helpCommand = commands.get(options.getOption("help"));
+            String[] subcommandArgs = trimFirstArg(args);
+            SubCommand command = commands.getOrDefault(option, helpCommand);
             try {
-                String[] subcommandArgs = trimFirstArg(args);
-                SubCommand command = commands.getOrDefault(option, helpCommand);
                 CommandLine commandLine = new DefaultParser().parse(command.getOptions(), subcommandArgs);
                 if(!command.execute(sender, commandLine, subcommandArgs)) {
                     CommandInfo info = command.getClass().getAnnotation(CommandInfo.class);
@@ -47,8 +47,9 @@ public abstract class CommandHandler extends Command implements CommandExecutor 
                     BukkitHelpFormatter.printHelp(sender, usage, command.getOptions());
                 }
             } catch (ParseException e) {
-                helpCommand.execute(sender, null, "");
-                e.printStackTrace();
+                BukkitHelpFormatter.printHelp(sender, command.info.usage(), command.getOptions());
+//                helpCommand.execute(sender, null, "");
+//                e.printStackTrace();
             }
 
         }

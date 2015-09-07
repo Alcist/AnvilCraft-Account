@@ -1,6 +1,7 @@
 package com.alcist.anvilcraft.account.commands;
 
 import com.alcist.anvilcraft.account.Plugin;
+import com.alcist.anvilcraft.account.commands.user.AvatarCreateCommand;
 import com.alcist.anvilcraft.account.commands.user.AvatarListCommand;
 import org.apache.commons.cli.Options;
 
@@ -26,7 +27,10 @@ public class AccountCommandHandler extends CommandHandler {
 
     @Override
     public Class<? extends SubCommand> [] getCommands() {
-        return new Class[]{AvatarListCommand.class};
+        return new Class[]{
+                AvatarListCommand.class,
+                AvatarCreateCommand.class
+        };
     }
 
 }

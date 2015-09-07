@@ -2,11 +2,8 @@ package com.alcist.anvilcraft.account.commands.user;
 
 import com.alcist.anvilcraft.account.Plugin;
 import com.alcist.anvilcraft.account.commands.BukkitHelpFormatter;
-import com.alcist.anvilcraft.account.commands.Command;
 import com.alcist.anvilcraft.account.commands.CommandInfo;
 import com.alcist.anvilcraft.account.commands.SubCommand;
-import com.alcist.anvilcraft.account.models.Avatar;
-import com.alcist.anvilcraft.account.models.User;
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.Option;
 import org.apache.commons.cli.Options;
@@ -15,17 +12,14 @@ import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
 
-import java.util.LinkedHashMap;
-import java.util.List;
-
 /**
  * Created by istar on 04/09/15.
  */
 @CommandInfo(
         name = "avatarlist",
-        shortInv = "a",
-        longInv = "avatars",
-        usage = "/ac -a [filters]",
+        shortInv = "ls",
+        longInv = "list",
+        usage = "/ac ls [-u <username>]",
         desc = "list all avatars for the current user",
         permission = "anvilcraft.account.avatar.list")
 public class AvatarListCommand extends SubCommand {
@@ -99,6 +93,6 @@ public class AvatarListCommand extends SubCommand {
                 .addOption(Option.builder("u")
                         .longOpt("user")
                         .hasArg()
-                        .desc("shows the avatars for the given user no user provided list all users").build());
+                        .desc("shows the avatars for the given user").build());
     }
 }
