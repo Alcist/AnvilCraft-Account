@@ -1,3 +1,6 @@
 [submodule "FireHelper"]
 	path = FireHelper
 	url = https://Istar-Eldritch@github.com/Alcist/FireHelper.git
+[submodule "CommandAPI"]
+	path = CommandAPI
+	url = https://Istar-Eldritch@github.com/Alcist/CommandAPI.git

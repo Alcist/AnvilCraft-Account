@@ -1,9 +1,9 @@
 package com.alcist.anvilcraft.account.commands.user;
 
 import com.alcist.anvilcraft.account.Plugin;
-import com.alcist.anvilcraft.account.commands.CommandInfo;
-import com.alcist.anvilcraft.account.commands.SubCommand;
 import com.alcist.anvilcraft.account.models.Location;
+import com.alcist.commandapi.CommandInfo;
+import com.alcist.commandapi.SubCommand;
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.Option;
 import org.apache.commons.cli.Options;

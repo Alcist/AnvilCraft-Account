@@ -4,10 +4,9 @@ import com.alcist.anvilcraft.account.Plugin;
 import com.alcist.anvilcraft.account.commands.user.AvatarCreateCommand;
 import com.alcist.anvilcraft.account.commands.user.AvatarListCommand;
 import com.alcist.anvilcraft.account.commands.user.AvatarUseCommand;
-import org.apache.commons.cli.Options;
-
-import java.util.ArrayList;
-import java.util.List;
+import com.alcist.commandapi.CommandHandler;
+import com.alcist.commandapi.CommandInfo;
+import com.alcist.commandapi.SubCommand;
 
 /**
  * Created by istar on 07/09/15.

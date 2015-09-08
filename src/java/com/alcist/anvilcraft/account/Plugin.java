@@ -1,7 +1,6 @@
 package com.alcist.anvilcraft.account;
 
 import com.alcist.anvilcraft.account.commands.AccountCommandHandler;
-import com.alcist.anvilcraft.account.commands.CommandHandler;
 import com.alcist.anvilcraft.account.listeners.FirebaseEventListener;
 import com.firebase.client.*;
 import com.alcist.anvilcraft.account.listeners.BukkitEventListener;

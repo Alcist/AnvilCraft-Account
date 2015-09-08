@@ -1,10 +1,10 @@
 package com.alcist.anvilcraft.account.commands.user;
 
 import com.alcist.anvilcraft.account.Plugin;
-import com.alcist.anvilcraft.account.commands.BukkitHelpFormatter;
-import com.alcist.anvilcraft.account.commands.CommandInfo;
-import com.alcist.anvilcraft.account.commands.SubCommand;
 import com.alcist.anvilcraft.account.models.Avatar;
+import com.alcist.commandapi.BukkitHelpFormatter;
+import com.alcist.commandapi.CommandInfo;
+import com.alcist.commandapi.SubCommand;
 import org.apache.commons.cli.CommandLine;
 import org.apache.commons.cli.Option;
 import org.apache.commons.cli.Options;
@@ -26,6 +26,7 @@ import java.util.HashMap;
         permission = "account.avatar.create")
 public class AvatarCreateCommand extends SubCommand {
     //TODO Define max avatars per user
+    //TODO Dont let users create avatars with the same name.
     Plugin plugin;
 
     public AvatarCreateCommand() {
