@@ -3,6 +3,7 @@ package com.alcist.anvilcraft.account.commands;
 import com.alcist.anvilcraft.account.Plugin;
 import com.alcist.anvilcraft.account.commands.user.AvatarCreateCommand;
 import com.alcist.anvilcraft.account.commands.user.AvatarListCommand;
+import com.alcist.anvilcraft.account.commands.user.AvatarRemoveCommand;
 import com.alcist.anvilcraft.account.commands.user.AvatarUseCommand;
 import com.alcist.commandapi.CommandHandler;
 import com.alcist.commandapi.CommandInfo;
@@ -30,7 +31,8 @@ public class AccountCommandHandler extends CommandHandler {
         return new Class[]{
                 AvatarListCommand.class,
                 AvatarCreateCommand.class,
-                AvatarUseCommand.class
+                AvatarUseCommand.class,
+                AvatarRemoveCommand.class
         };
     }
 

@@ -80,4 +80,9 @@ class FirebaseAccountAdapter implements AccountAdapter {
         avatarRef.setValue(avatar);
         return avatarRef.getKey();
     }
+
+    @Override
+    public void removeAvatar(String id) {
+        avatarsRef.child(id).removeValue();
+    }
 }

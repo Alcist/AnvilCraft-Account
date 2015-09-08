@@ -36,6 +36,8 @@ public interface AccountAdapter {
 
     String saveAvatar(Avatar avatar);
 
+    void removeAvatar(String id);
+
     class MapResponse<T> extends HashMap<String, T> {}
     class UserResponse extends MapResponse<User>{}
     class AvatarResponse extends MapResponse<Avatar>{

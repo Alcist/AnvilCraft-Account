@@ -78,7 +78,9 @@ public class AvatarListCommand extends SubCommand {
         plugin.getAccountData().getUser(userId, user -> {
             user.avatars.keySet().forEach(avatarId -> {
                 plugin.getAccountData().getAvatar(avatarId, avatar -> {
-                    sender.sendMessage(avatar.name);
+                    if(avatar != null) {
+                        sender.sendMessage(avatar.name);
+                    }
                 });
             });
         });
